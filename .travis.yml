@@ -2,3 +2,13 @@ addons:
   apt:
     packages:
     - aria2
+
+before_install:
+  - aria2c -i sources.txt -o list_tml.txt | awk -v r="0.0.0.0" '{sub(/^0.0.0.0/, r)} $0 ~ "^"r' >> result.txt
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  on:
+    branch: master
