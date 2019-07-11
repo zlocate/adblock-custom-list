@@ -1,15 +1,15 @@
-language: minimal
-addons:
-  apt:
-    packages:
-    - aria2
-
-before_install:
-  - aria2c -i sources.txt -o list_tml.txt | awk -v r="0.0.0.0" '{sub(/^0.0.0.0/, r)} $0 ~ "^"r' >> result.txt
-deploy:
+--- 
+addons: 
+  apt: 
+    packages: 
+      - aria2
+build: 
+  - "aria2c -i sources.txt -o list_tml.txt | awk -v r=\"0.0.0.0\" '{sub(/^0.0.0.0/, r)} $0 ~ \"^\"r' >> result.txt"
+deploy: 
+  github_token: $GITHUB_TOKEN
+  keep_history: true
   provider: pages
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
-  on:
+  true: 
     branch: master
+language: minimal
