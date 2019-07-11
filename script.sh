@@ -1,0 +1,1 @@
+aria2c -i sources.txt -o result.txt
