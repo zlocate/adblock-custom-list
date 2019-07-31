@@ -6,9 +6,10 @@ addons:
 build: 
   - "sh script.sh"
 deploy: 
-  github_token: $GITHUB_TOKEN
+  api_key: $GH_KEY
   keep_history: true
-  provider: pages
+  provider: releases
+  file: hosts.deny
   skip_cleanup: true
   true: 
     branch: master
